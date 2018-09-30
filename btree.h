@@ -16,12 +16,15 @@ public:
 	}
 
 	void insert(int value){
-		//TODO
 		if(!(this->root))
 			this->root = new Node(value);
 		else
 			this->root->insert(value);
 		nodes++;
+	};
+
+	bool search(int value){
+		return this->root->search(value);
 	};
 
 	void remove(int value){
@@ -30,8 +33,12 @@ public:
 	};
 
 	void print(){
-		// TODO
-		this->root->print();
+		iterator it=begin();
+		while(it!=this->end()){
+			std::cout<<*it<<" ";
+			++it;
+		}
+		std::cout<<(*(end()));
 	};
 
 	int getRoot(){
@@ -46,18 +53,25 @@ public:
 		//TODO
 	};
 
-	iterator begin(){
-		Node* tmp = root;
-		while(tmp->childLeft)
+	iterator begin() {
+		Node *tmp = this->root;
+		std::stack<Node *> aStack;
+		aStack.push(tmp);
+		while(tmp->childLeft){
+			aStack.push(tmp);
 			tmp = tmp->childLeft;
-		return iterator(tmp);
+		}
+		return iterator(tmp,aStack);
 	};
 
 	iterator end(){
 		Node*  tmp = root;
-		while(tmp->childRight)
-			tmp = tmp->childRight;
-		return iterator(tmp);
+		std::stack<Node*> aStack;
+		while(tmp->childRight) {
+            aStack.push(tmp);
+            tmp = tmp->childRight;
+        }
+        return iterator(tmp,aStack);
 	}
 };
 
