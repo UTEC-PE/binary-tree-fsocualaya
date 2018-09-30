@@ -1,7 +1,8 @@
-#include "node.h"
+// #include "node.h"
+#include "iterator.h"
 
 class btree{
-public:
+private:
 	Node* root;
 	int nodes = 0;
 
@@ -30,6 +31,7 @@ public:
 
 	void print(){
 		// TODO
+		this->root->print();
 	};
 
 	int getRoot(){
@@ -43,4 +45,19 @@ public:
 	int height(){
 		//TODO
 	};
+
+	iterator begin(){
+		Node* tmp = root;
+		while(tmp->childLeft)
+			tmp = tmp->childLeft;
+		return iterator(tmp);
+	};
+
+	iterator end(){
+		Node*  tmp = root;
+		while(tmp->childRight)
+			tmp = tmp->childRight;
+		return iterator(tmp);
+	}
 };
+

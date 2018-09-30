@@ -1,12 +1,15 @@
+#include <iostream>
+
 struct Node{
 	int data;
-	struct Node* childLeft;
-	struct Node* childRight;
+	Node* childRight;
+	Node* childLeft;
 	
 public:
+
 	Node(int data){
 		this->data = data;
-	};
+	}
 
 	void insert(int value){
 		if(value <= this->data){
@@ -21,13 +24,21 @@ public:
 			else
 				this->childRight->insert(value);
 		}
-	};
+	}
 
 	void remove(){
 
-	};
+	}
 
 	void print(){
+		if(this->childLeft)
+			this->childLeft->print();
+			
+		std::cout<<this->data<<" ";
 
-	};
+		if(this->childRight)
+			this->childRight->print();
+		
+		}
+
 };
