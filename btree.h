@@ -27,7 +27,6 @@ public:
 	};
 
 	void remove(int value){
-		// TODO
         //only remove leafs
         if(find(value)){
             Node* tmp = this->root->find(value);
