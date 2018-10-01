@@ -24,24 +24,18 @@ struct Node{
 		}
 	}
 
-	void remove(){
-        //TODO
-
-
-	}
-
-    Node* search(int value){
+    Node* find(int value){
         if(this->data==value)
             return this;
         else if(this->data>value) {
             if (this->childLeft)
-                this->childLeft->search(value);
+                this->childLeft->find(value);
             else
                 return nullptr;
         }
         else if(this->data<value) {
             if (this->childRight)
-                this->childLeft->search(value);
+                this->childRight->find(value);
             else
                 return nullptr;
         }
@@ -56,6 +50,5 @@ struct Node{
 
 		if(this->childRight)
 			this->childRight->print();
-		
-		}
+	}
 };

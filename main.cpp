@@ -2,7 +2,7 @@
 using namespace std;
 int main(){
 
-	btree t;
+	btree t(5);
 	t.insert(5);
 	t.insert(4);
 	t.insert(8);
@@ -14,6 +14,8 @@ int main(){
 	t.insert(19);
 
 	t.print();
-    cout<<"\n"<<t.search(36);
+	cout<<t.find(8)<<endl;
+    t.remove(19);
+    t.print();
 	return 0;
 }

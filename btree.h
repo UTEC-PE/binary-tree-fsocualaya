@@ -23,22 +23,40 @@ public:
 		nodes++;
 	};
 
-	bool search(int value){
-		return this->root->search(value);
+	bool find(int value){
+		return this->root->find(value);
 	};
 
 	void remove(int value){
 		// TODO
+        //only remove leafs
+        if(find(value)){
+            Node* tmp = this->root->find(value);
+            iterator itmp = begin();
+
+//            find value's parent
+            while(itmp.getNode()->childLeft != tmp and itmp.getNode()->childRight != tmp)
+                ++itmp;
+            if(itmp.getNode()->childLeft==tmp)
+                itmp.getNode()->childLeft = nullptr;
+            else if(itmp.getNode()->childRight==tmp)
+                itmp.getNode()->childRight = nullptr;
+
+//            delete node that holds value
+            if(!(tmp->childLeft) and !(tmp->childRight))
+                delete tmp;
+        }
 		nodes--;
 	};
 
 	void print(){
 		iterator it=begin();
 		while(it!=this->end()){
-			std::cout<<*it<<" ";
+            std::cout<<*it<<" ";
 			++it;
 		}
 		std::cout<<(*(end()));
+		std::cout<<std::endl;
 	};
 
 	int getRoot(){

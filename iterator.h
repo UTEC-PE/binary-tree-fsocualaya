@@ -39,4 +39,7 @@ public:
 		return this->current->data;
 	}
 
+	Node* getNode(){
+	    return this->current;
+	}
 };
