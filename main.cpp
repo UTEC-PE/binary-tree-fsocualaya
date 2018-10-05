@@ -16,6 +16,8 @@ int main(){
 	t.print();
 	cout<<t.find(8)<<endl;
     t.remove(19);
+	t.remove(5); // Falla, reviste probar más casos
+		// Dónde probaste tu iterator?
     t.print();
 	return 0;
 }

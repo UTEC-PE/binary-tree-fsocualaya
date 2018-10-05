@@ -14,6 +14,8 @@ public:
 		this->root = new Node(value);
 	}
 
+	// Falta el destructor
+
 	void insert(int value){
 		if(!(this->root))
 			this->root = new Node(value);
@@ -30,7 +32,7 @@ public:
         //only remove leafs
         if(find(value)){
             Node* tmp = this->root->find(value);
-            iterator itmp = begin();
+            Iterator itmp = begin();
 
 //            find value's parent
             while(itmp.getNode()->childLeft != tmp and itmp.getNode()->childRight != tmp)
@@ -48,7 +50,7 @@ public:
 	};
 
 	void print(){
-		iterator it=begin();
+		Iterator it=begin();
 		while(it!=this->end()){
             std::cout<<*it<<" ";
 			++it;
@@ -69,7 +71,7 @@ public:
 		//TODO
 	};
 
-	iterator begin() {
+	Iterator begin() {
 		Node *tmp = this->root;
 		std::stack<Node *> aStack;
 		aStack.push(tmp);
@@ -77,17 +79,17 @@ public:
 			aStack.push(tmp);
 			tmp = tmp->childLeft;
 		}
-		return iterator(tmp,aStack);
+		return Iterator(tmp,aStack);
 	};
 
-	iterator end(){
+	Iterator end(){
 		Node*  tmp = root;
 		std::stack<Node*> aStack;
 		while(tmp->childRight) {
             aStack.push(tmp);
             tmp = tmp->childRight;
         }
-        return iterator(tmp,aStack);
+        return Iterator(tmp,aStack);
 	}
 };
 

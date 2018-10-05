@@ -1,26 +1,26 @@
 #include "node.h"
 #include <stack>
 
-class iterator{
+class Iterator{
  private:
 	Node* current;
 	std::stack<Node*> theStack;
 
 public:
-	iterator(){
+	Iterator(){
 		current = nullptr;
 	}
 
-    iterator(Node* current, std::stack<Node*> someStack){
+    Iterator(Node* current, std::stack<Node*> someStack){
 	    this->current = current;
 	    theStack = someStack;
 	}
 
-	bool operator!=(iterator other){
+	bool operator!=(Iterator other){
 		return current!=other.current;
 	}
 
-	iterator operator++(){
+	Iterator operator++(){
 	    theStack.pop();
 		if(current->childRight){
 			current = current->childRight;
